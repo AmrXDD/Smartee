@@ -1,0 +1,155 @@
+@import "tailwindcss";
+
+/* ─────────────────────────────────────────────────────────────
+   SMARTEE KUWAIT — DESIGN TOKENS
+   Strategy: Committed. Porcelain surfaces + graphite ink + one
+   carrying accent ("Iris"). Avoids the white+teal healthcare
+   reflex and the navy+gold luxury reflex.
+   All colors OKLCH, every neutral tinted toward the Iris hue.
+   ───────────────────────────────────────────────────────────── */
+@theme {
+  /* ── Surfaces (tinted neutrals; chroma stays ≤0.012) ── */
+  --color-bone: oklch(98.4% 0.006 285);
+  --color-porcelain: oklch(96.2% 0.008 286);
+  --color-mist: oklch(92.5% 0.011 287);
+  --color-fog: oklch(85% 0.013 288);
+  --color-stone: oklch(64% 0.014 287);
+  --color-graphite: oklch(38% 0.018 285);
+  --color-ink: oklch(18% 0.022 282);
+  --color-obsidian: oklch(11% 0.024 281);
+
+  /* ── Iris: the committed accent ── */
+  --color-iris-50: oklch(96% 0.030 283);
+  --color-iris-100: oklch(90% 0.060 283);
+  --color-iris-200: oklch(80% 0.110 282);
+  --color-iris-300: oklch(70% 0.150 281);
+  --color-iris-400: oklch(60% 0.180 280);
+  --color-iris-500: oklch(52% 0.205 279);
+  --color-iris-600: oklch(44% 0.190 278);
+  --color-iris-700: oklch(35% 0.150 277);
+  --color-iris-800: oklch(26% 0.110 276);
+
+  /* ── Signal: warm counterpart for highlights only ── */
+  --color-signal: oklch(78% 0.155 65);
+
+  /* ── Type ── */
+  --font-display: "Inter Tight", ui-sans-serif, system-ui, sans-serif;
+  --font-editorial: "Instrument Serif", ui-serif, Georgia, serif;
+  --font-mono: ui-monospace, "SF Mono", Menlo, monospace;
+
+  /* ── Easing (no bounce, no elastic) ── */
+  --ease-quart: cubic-bezier(0.165, 0.84, 0.44, 1);
+  --ease-quint: cubic-bezier(0.23, 1, 0.32, 1);
+  --ease-expo: cubic-bezier(0.19, 1, 0.22, 1);
+  --ease-soft: cubic-bezier(0.32, 0.72, 0.16, 1);
+
+  /* ── Motion durations ── */
+  --dur-instant: 120ms;
+  --dur-fast: 240ms;
+  --dur-base: 420ms;
+  --dur-slow: 720ms;
+  --dur-cinematic: 1200ms;
+}
+
+/* Body sets the bone surface + graphite ink */
+@layer base {
+  html, body {
+    background: var(--color-bone);
+    color: var(--color-ink);
+    font-family: var(--font-display);
+    font-feature-settings: "ss01", "ss02", "cv11";
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background: var(--color-iris-500);
+    color: var(--color-bone);
+  }
+
+  /* Lenis prep */
+  html.lenis, html.lenis body { height: auto; }
+  .lenis.lenis-smooth { scroll-behavior: auto !important; }
+  .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+  .lenis.lenis-stopped { overflow: hidden; }
+
+  /* Hide native cursor on pointer-fine devices when our custom cursor is up */
+  html[data-cursor-active="true"] *,
+  html[data-cursor-active="true"] {
+    cursor: none !important;
+  }
+
+  @media (hover: none) {
+    html[data-cursor-active="true"] *,
+    html[data-cursor-active="true"] {
+      cursor: auto !important;
+    }
+  }
+}
+
+/* ─── Utilities ─── */
+@layer utilities {
+  /* Subtle warm noise overlay for cinema feel */
+  .noise::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='240' height='240'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.1  0 0 0 0 0.08  0 0 0 0 0.18  0 0 0 0.55 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/></svg>");
+    mix-blend-mode: overlay;
+    opacity: 0.18;
+    z-index: 1;
+  }
+
+  /* Editorial tracking presets */
+  .tracking-display { letter-spacing: -0.035em; }
+  .tracking-eyebrow { letter-spacing: 0.18em; }
+
+  /* Smooth-clip text reveal mask */
+  .clip-up {
+    clip-path: inset(0 0 100% 0);
+  }
+  .clip-down {
+    clip-path: inset(100% 0 0 0);
+  }
+
+  /* Premium underline */
+  .link-underline {
+    background-image: linear-gradient(currentColor, currentColor);
+    background-size: 0% 1px;
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    transition: background-size var(--dur-base) var(--ease-quart);
+  }
+  .link-underline:hover { background-size: 100% 1px; }
+
+  /* Iris glow (sparingly used) */
+  .glow-iris {
+    box-shadow:
+      0 0 0 1px oklch(52% 0.205 279 / 0.18),
+      0 12px 60px -12px oklch(52% 0.205 279 / 0.35),
+      0 24px 120px -40px oklch(52% 0.205 279 / 0.5);
+  }
+}
+
+@keyframes shimmer {
+  0% { transform: translateX(-120%); }
+  100% { transform: translateX(120%); }
+}
+
+@keyframes orbit {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

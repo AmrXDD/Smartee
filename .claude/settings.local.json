@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx skills *)",
+      "Bash(npx --yes create-next-app@latest . --typescript --tailwind --app --eslint --src-dir --import-alias \"@/*\" --use-npm --turbopack --no-git --yes)",
+      "Bash(npx --yes create-next-app@latest . --name smartee-kuwait --typescript --tailwind --app --eslint --src-dir --import-alias \"@/*\" --use-npm --turbopack --no-git --yes)",
+      "Bash(npm install *)",
+      "Bash(npx tsc *)",
+      "Bash(npx next *)",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(taskkill /PID 13476 /F)",
+      "PowerShell(Stop-Process -Id 13476 -Force -ErrorAction SilentlyContinue)",
+      "PowerShell(\"done\")",
+      "PowerShell($conn = Get-NetTCPConnection -LocalPort 3000 -State Listen -ErrorAction SilentlyContinue; if \\($conn\\) { $conn | Select-Object -First 1 | ForEach-Object { Stop-Process -Id $_.OwningProcess -Force -ErrorAction SilentlyContinue }; Start-Sleep -Seconds 1 }; if \\(Get-NetTCPConnection -LocalPort 3000 -State Listen -ErrorAction SilentlyContinue\\) { \"still busy\" } else { \"free\" })",
+      "Bash(curl -s http://localhost:3000/)",
+      "Bash(grep -nB1 -A3 'motion\\\\.' src/components/providers/cursor.tsx)"
+    ]
+  }
+}
