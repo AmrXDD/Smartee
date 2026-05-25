@@ -8,26 +8,26 @@
    All colors OKLCH, every neutral tinted toward the Iris hue.
    ───────────────────────────────────────────────────────────── */
 @theme {
-  /* ── Surfaces (tinted neutrals; chroma stays ≤0.012) ── */
-  --color-bone: oklch(98.4% 0.006 285);
-  --color-porcelain: oklch(96.2% 0.008 286);
-  --color-mist: oklch(92.5% 0.011 287);
-  --color-fog: oklch(85% 0.013 288);
-  --color-stone: oklch(64% 0.014 287);
-  --color-graphite: oklch(38% 0.018 285);
-  --color-ink: oklch(18% 0.022 282);
-  --color-obsidian: oklch(11% 0.024 281);
+  /* ── Surfaces (tinted neutrals toward the red hue; chroma stays ≤0.018) ── */
+  --color-bone: oklch(98.4% 0.006 30);
+  --color-porcelain: oklch(96.2% 0.008 30);
+  --color-mist: oklch(92.5% 0.011 30);
+  --color-fog: oklch(85% 0.013 30);
+  --color-stone: oklch(64% 0.014 30);
+  --color-graphite: oklch(38% 0.018 28);
+  --color-ink: oklch(18% 0.022 28);
+  --color-obsidian: oklch(11% 0.024 28);
 
-  /* ── Iris: the committed accent ── */
-  --color-iris-50: oklch(96% 0.030 283);
-  --color-iris-100: oklch(90% 0.060 283);
-  --color-iris-200: oklch(80% 0.110 282);
-  --color-iris-300: oklch(70% 0.150 281);
-  --color-iris-400: oklch(60% 0.180 280);
-  --color-iris-500: oklch(52% 0.205 279);
-  --color-iris-600: oklch(44% 0.190 278);
-  --color-iris-700: oklch(35% 0.150 277);
-  --color-iris-800: oklch(26% 0.110 276);
+  /* ── Smartee Red: the committed accent (warm vermillion, not panic-red) ── */
+  --color-iris-50: oklch(96% 0.025 28);
+  --color-iris-100: oklch(90% 0.055 28);
+  --color-iris-200: oklch(82% 0.105 27);
+  --color-iris-300: oklch(72% 0.155 26);
+  --color-iris-400: oklch(62% 0.200 25);
+  --color-iris-500: oklch(55% 0.225 25);
+  --color-iris-600: oklch(46% 0.205 24);
+  --color-iris-700: oklch(36% 0.165 23);
+  --color-iris-800: oklch(27% 0.120 22);
 
   /* ── Signal: warm counterpart for highlights only ── */
   --color-signal: oklch(78% 0.155 65);
@@ -130,9 +130,9 @@
   /* Iris glow (sparingly used) */
   .glow-iris {
     box-shadow:
-      0 0 0 1px oklch(52% 0.205 279 / 0.18),
-      0 12px 60px -12px oklch(52% 0.205 279 / 0.35),
-      0 24px 120px -40px oklch(52% 0.205 279 / 0.5);
+      0 0 0 1px oklch(55% 0.225 25 / 0.18),
+      0 12px 60px -12px oklch(55% 0.225 25 / 0.35),
+      0 24px 120px -40px oklch(55% 0.225 25 / 0.5);
   }
 }
 

@@ -19,7 +19,7 @@ export function Cta() {
       {/* Ambient gradient */}
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(60%_70%_at_50%_50%,oklch(40%_0.18_278/0.55),transparent_70%)]"
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(60%_70%_at_50%_50%,oklch(46%_0.205_24/0.5),transparent_70%)]"
       />
 
       {/* Background orbital line */}
@@ -48,7 +48,7 @@ export function Cta() {
           rx="380"
           ry="380"
           fill="none"
-          stroke="oklch(70% 0.15 281)"
+          stroke="oklch(72% 0.155 26)"
           strokeOpacity="0.2"
           strokeWidth="0.6"
           initial={{ rotate: 0 }}

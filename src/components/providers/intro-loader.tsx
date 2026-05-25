@@ -58,20 +58,20 @@ export function IntroLoader() {
           {/* Ambient gradient wash */}
           <div
             aria-hidden
-            className="pointer-events-none absolute inset-0 bg-[radial-gradient(50%_60%_at_50%_50%,oklch(40%_0.18_278/0.35),transparent_70%)]"
+            className="pointer-events-none absolute inset-0 bg-[radial-gradient(50%_60%_at_50%_50%,oklch(46%_0.205_24/0.32),transparent_70%)]"
           />
 
           {/* Reveal wipe — opens from horizon */}
           <motion.div
             initial={{ scaleY: 1 }}
-            animate={phase === "revealing" || phase === "done" ? { scaleY: 0 } : { scaleY: 1 }}
+            animate={phase === "revealing" ? { scaleY: 0 } : { scaleY: 1 }}
             transition={{ duration: 0.9, ease: [0.83, 0, 0.17, 1] }}
             style={{ transformOrigin: "top" }}
             className="absolute inset-x-0 top-0 z-[2] h-1/2 bg-[var(--color-obsidian)]"
           />
           <motion.div
             initial={{ scaleY: 1 }}
-            animate={phase === "revealing" || phase === "done" ? { scaleY: 0 } : { scaleY: 1 }}
+            animate={phase === "revealing" ? { scaleY: 0 } : { scaleY: 1 }}
             transition={{ duration: 0.9, ease: [0.83, 0, 0.17, 1] }}
             style={{ transformOrigin: "bottom" }}
             className="absolute inset-x-0 bottom-0 z-[2] h-1/2 bg-[var(--color-obsidian)]"
@@ -91,7 +91,7 @@ export function IntroLoader() {
           </div>
 
           {/* Center counter + scan line — sits on the seam between the two panels */}
-          <CenterStage phase={phase} percent={percent} />
+          <CenterStage phase={phase} percent={percent} progress={progress} />
         </motion.div>
       )}
     </AnimatePresence>
@@ -103,9 +103,11 @@ export function IntroLoader() {
 function CenterStage({
   phase,
   percent,
+  progress,
 }: {
   phase: "scanning" | "complete" | "revealing" | "done";
   percent: number;
+  progress: number;
 }) {
   return (
     <div className="pointer-events-none absolute inset-0 z-[3] flex items-center justify-center">
@@ -122,10 +124,30 @@ function CenterStage({
         </motion.div>
 
         {/* Massive count — odometer-style stack so each digit can slide */}
-        <div className="relative flex items-center font-[var(--font-display)] text-[clamp(7rem,18vw,16rem)] font-medium leading-[0.85] tracking-[-0.06em] tabular-nums text-[var(--color-bone)]">
+        <div
+          role="progressbar"
+          aria-valuemin={0}
+          aria-valuemax={100}
+          aria-valuenow={percent}
+          aria-label="Scanning progress"
+          className="relative flex items-center font-[var(--font-display)] text-[clamp(7rem,18vw,16rem)] font-medium leading-[0.85] tracking-[-0.06em] tabular-nums text-[var(--color-bone)]"
+        >
           <Digit value={Math.floor(percent / 100)} />
           <Digit value={Math.floor((percent % 100) / 10)} />
           <Digit value={percent % 10} />
+          <span className="ml-[0.18em] block self-end pb-[0.18em] font-[var(--font-mono)] text-[clamp(1rem,2vw,1.5rem)] font-normal leading-none tracking-[0.18em] text-[var(--color-bone)]/45">
+            %
+          </span>
+        </div>
+
+        {/* Progress underline that grows with the counter */}
+        <div className="relative mt-2 h-px w-full max-w-[min(82vw,720px)] overflow-hidden bg-[var(--color-bone)]/10">
+          <motion.div
+            animate={{ scaleX: progress }}
+            transition={{ ease: "linear" }}
+            style={{ transformOrigin: "left" }}
+            className="absolute inset-0 bg-[var(--color-iris-300)]"
+          />
         </div>
 
         {/* Sub-line: tagline appears only at complete */}
@@ -175,15 +197,21 @@ function CenterStage({
 
 /* ─── Odometer digit (slides vertically when value changes) ─── */
 function Digit({ value }: { value: number }) {
+  // The inner column is 10× the cell height (one row per digit 0-9).
+  // Animating "y" in % is relative to the COLUMN, so each digit step
+  // is 10% (= 1 cell height). Don't use 100% here.
   return (
-    <span className="relative inline-block h-[1em] w-[0.62em] overflow-hidden">
+    <span
+      className="relative inline-block h-[1em] w-[0.62em] overflow-hidden align-baseline"
+      aria-hidden
+    >
       <motion.span
-        animate={{ y: `${-value * 100}%` }}
+        animate={{ y: `${-value * 10}%` }}
         transition={{ duration: 0.55, ease: EASE.expo }}
-        className="absolute left-0 top-0 flex flex-col"
+        className="absolute inset-x-0 top-0 flex flex-col"
       >
         {Array.from({ length: 10 }).map((_, n) => (
-          <span key={n} className="block h-[1em] text-center leading-none">
+          <span key={n} className="block h-[1em] text-center leading-[1]">
             {n}
           </span>
         ))}
@@ -313,8 +341,8 @@ function ArchBackdrop({ progress }: { progress: number }) {
       <svg viewBox="-220 -200 440 400" className="h-[90vmin] w-[90vmin] max-h-[860px] max-w-[860px]" aria-hidden>
         <defs>
           <radialGradient id="archGlowL" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="oklch(52% 0.205 279)" stopOpacity="0.4" />
-            <stop offset="60%" stopColor="oklch(52% 0.205 279)" stopOpacity="0.05" />
+            <stop offset="0%" stopColor="oklch(55% 0.225 25)" stopOpacity="0.4" />
+            <stop offset="60%" stopColor="oklch(55% 0.225 25)" stopOpacity="0.05" />
             <stop offset="100%" stopColor="transparent" />
           </radialGradient>
         </defs>

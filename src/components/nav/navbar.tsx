@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { Magnetic } from "./magnetic";
+import { useIntro } from "@/components/providers/intro-context";
 import { EASE } from "@/lib/utils";
 
 const NAV = [
@@ -15,8 +16,9 @@ const NAV = [
 ];
 
 export function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
+  const [, setScrolled] = useState(false);
   const [openMenu, setOpenMenu] = useState(false);
+  const { revealStarted } = useIntro();
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -29,8 +31,8 @@ export function Navbar() {
     <>
       <motion.header
         initial={{ y: -40, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ delay: 2.4, duration: 0.9, ease: EASE.quart }}
+        animate={revealStarted ? { y: 0, opacity: 1 } : { y: -40, opacity: 0 }}
+        transition={{ delay: 0.15, duration: 0.9, ease: EASE.quart }}
         className="fixed inset-x-0 top-0 z-[150] mix-blend-difference"
       >
         <div className="mx-auto flex max-w-[1480px] items-center justify-between px-6 py-5 md:px-10 md:py-6">
@@ -43,8 +45,8 @@ export function Navbar() {
               <svg viewBox="0 0 32 32" className="h-full w-full text-[var(--color-bone)]" fill="currentColor">
                 <motion.path
                   initial={{ pathLength: 0 }}
-                  animate={{ pathLength: 1 }}
-                  transition={{ delay: 2.5, duration: 1.4, ease: EASE.quart }}
+                  animate={revealStarted ? { pathLength: 1 } : { pathLength: 0 }}
+                  transition={{ delay: 0.3, duration: 1.4, ease: EASE.quart }}
                   d="M16 1c8.284 0 15 6.716 15 15 0 4.5-2 8-5 10.5-2.5 2-5 4-10 4S8 28.5 6 26.5C3 24 1 20.5 1 16 1 7.716 7.716 1 16 1Z"
                   fill="none"
                   stroke="currentColor"

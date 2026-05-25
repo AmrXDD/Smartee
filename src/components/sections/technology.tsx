@@ -42,7 +42,7 @@ export function Technology() {
         className="pointer-events-none absolute -left-[20%] top-1/2 h-[120%] w-[140%] -translate-y-1/2 opacity-50"
         aria-hidden
       >
-        <div className="absolute inset-0 bg-[radial-gradient(40%_60%_at_50%_50%,oklch(35%_0.15_277/0.45),transparent_70%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(40%_60%_at_50%_50%,oklch(36%_0.165_23/0.45),transparent_70%)]" />
       </motion.div>
 
       <div className="relative mx-auto max-w-[1480px] px-6 md:px-10">
@@ -114,8 +114,8 @@ function ToothScan() {
     <svg viewBox="0 0 1100 700" className="absolute inset-0 h-full w-full" aria-hidden>
       <defs>
         <radialGradient id="scanGlow" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stopColor="oklch(52% 0.205 279)" stopOpacity="0.45" />
-          <stop offset="60%" stopColor="oklch(35% 0.15 277)" stopOpacity="0.1" />
+          <stop offset="0%" stopColor="oklch(55% 0.225 25)" stopOpacity="0.45" />
+          <stop offset="60%" stopColor="oklch(36% 0.165 23)" stopOpacity="0.1" />
           <stop offset="100%" stopColor="transparent" />
         </radialGradient>
         <linearGradient id="scanLine" x1="0" y1="0" x2="1" y2="0">

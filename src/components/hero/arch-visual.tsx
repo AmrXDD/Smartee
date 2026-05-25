@@ -23,9 +23,9 @@ export function ArchVisual({ scrollY }: { scrollY: MotionValue<number> }) {
       <svg viewBox="-200 -200 400 400" className="h-full w-full">
         <defs>
           <radialGradient id="archGlow" cx="50%" cy="50%" r="50%">
-            <stop offset="0%" stopColor="oklch(52% 0.205 279)" stopOpacity="0.55" />
-            <stop offset="55%" stopColor="oklch(52% 0.205 279)" stopOpacity="0.06" />
-            <stop offset="100%" stopColor="oklch(11% 0.024 281)" stopOpacity="0" />
+            <stop offset="0%" stopColor="oklch(55% 0.225 25)" stopOpacity="0.55" />
+            <stop offset="55%" stopColor="oklch(55% 0.225 25)" stopOpacity="0.06" />
+            <stop offset="100%" stopColor="oklch(11% 0.024 28)" stopOpacity="0" />
           </radialGradient>
           <linearGradient id="archStroke" x1="0" y1="0" x2="1" y2="0">
             <stop offset="0%" stopColor="oklch(96% 0.008 286)" stopOpacity="0" />

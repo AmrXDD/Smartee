@@ -12,7 +12,7 @@ const SOLUTIONS = [
     duration: "6–9 months",
     range: "Mild crowding · spacing",
     body: "Our entry plan for adults with subtle alignment work. Twelve to twenty trays, weekly progress checks on the app.",
-    swatch: "oklch(86% 0.05 282)",
+    swatch: "oklch(90% 0.055 28)",
   },
   {
     code: "01.B",
@@ -20,7 +20,7 @@ const SOLUTIONS = [
     duration: "9–14 months",
     range: "Moderate · rotation · bite",
     body: "Our most-prescribed track. Includes attachments, mid-course refinement, and a printed retainer set.",
-    swatch: "oklch(70% 0.14 281)",
+    swatch: "oklch(72% 0.155 26)",
   },
   {
     code: "01.C",
@@ -28,7 +28,7 @@ const SOLUTIONS = [
     duration: "12–22 months",
     range: "Complex · jaw correction",
     body: "Co-planned with our maxillofacial partners. Pre-surgical alignment, post-op refinement, lifetime retention.",
-    swatch: "oklch(45% 0.18 278)",
+    swatch: "oklch(46% 0.205 24)",
   },
   {
     code: "01.D",

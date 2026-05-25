@@ -13,7 +13,14 @@
       "PowerShell(\"done\")",
       "PowerShell($conn = Get-NetTCPConnection -LocalPort 3000 -State Listen -ErrorAction SilentlyContinue; if \\($conn\\) { $conn | Select-Object -First 1 | ForEach-Object { Stop-Process -Id $_.OwningProcess -Force -ErrorAction SilentlyContinue }; Start-Sleep -Seconds 1 }; if \\(Get-NetTCPConnection -LocalPort 3000 -State Listen -ErrorAction SilentlyContinue\\) { \"still busy\" } else { \"free\" })",
       "Bash(curl -s http://localhost:3000/)",
-      "Bash(grep -nB1 -A3 'motion\\\\.' src/components/providers/cursor.tsx)"
+      "Bash(grep -nB1 -A3 'motion\\\\.' src/components/providers/cursor.tsx)",
+      "PowerShell($conn = Get-NetTCPConnection -LocalPort 3000 -State Listen -ErrorAction SilentlyContinue; if \\($conn\\) { Stop-Process -Id $conn[0].OwningProcess -Force; Start-Sleep -Seconds 1 }; \"ok\")",
+      "Bash(curl -s http://localhost:3000/ > /tmp/ssr.html && grep -o 'data-intro-loader\\\\|oklch\\(55%[^\\)]*\\)\\\\|oklch\\(46%[^\\)]*\\)\\\\|oklch\\(72%[^\\)]*\\)\\\\|--color-iris-500' /tmp/ssr.html | sort -u | head -20)",
+      "Bash(grep -oE 'Tomorrow[^<]{0,50}|smile[^<]{0,40}|by the millimeter[^<]{0,40}|transform:translateY\\\\\\([^\\)]+\\\\\\)' /tmp/ssr.html)",
+      "Bash(grep -oE 'by the millimeter|Tomorrow.{0,3}s|y:108%|y:.108%|transform[^\"]{0,40}108' /tmp/ssr.html)",
+      "Bash(npm run *)",
+      "Bash(node -e \"import\\('eslint-config-next'\\).then\\(m => console.log\\(Object.keys\\(m\\)\\)\\)\")",
+      "Bash(node -e \"import\\('eslint-config-next'\\).then\\(m => { const def = m.default; console.log\\(Array.isArray\\(def\\), Array.isArray\\(def\\) ? def.length : typeof def\\); }\\)\")"
     ]
   }
 }

@@ -5,15 +5,21 @@ import { useRef } from "react";
 import { ArchVisual } from "./arch-visual";
 import { DataChips } from "./data-chips";
 import { Magnetic } from "@/components/nav/magnetic";
+import { useIntro } from "@/components/providers/intro-context";
 import { EASE } from "@/lib/utils";
 
 export function Hero() {
   const ref = useRef<HTMLElement | null>(null);
   const { scrollY } = useScroll();
+  const { revealStarted } = useIntro();
 
   const titleY = useTransform(scrollY, [0, 800], [0, -120]);
   const titleOpacity = useTransform(scrollY, [0, 500], [1, 0]);
   const vignetteOpacity = useTransform(scrollY, [0, 600], [1, 0.3]);
+
+  // Drive every entry animation off this flag; delays are now relative to
+  // the moment the loader's panels begin parting (revealStarted = true).
+  const r = revealStarted;
 
   return (
     <section
@@ -23,7 +29,7 @@ export function Hero() {
       {/* Ambient gradient wash */}
       <motion.div
         style={{ opacity: vignetteOpacity }}
-        className="pointer-events-none absolute inset-0 z-[0] bg-[radial-gradient(60%_60%_at_50%_45%,oklch(35%_0.15_277/0.6),transparent_70%)]"
+        className="pointer-events-none absolute inset-0 z-[0] bg-[radial-gradient(60%_60%_at_50%_45%,oklch(36%_0.165_23/0.55),transparent_70%)]"
       />
 
       <ArchVisual scrollY={scrollY} />
@@ -37,15 +43,15 @@ export function Hero() {
         <div className="mb-8 flex items-center gap-3 overflow-hidden">
           <motion.span
             initial={{ scaleX: 0 }}
-            animate={{ scaleX: 1 }}
-            transition={{ delay: 2.6, duration: 1.1, ease: EASE.expo }}
+            animate={r ? { scaleX: 1 } : { scaleX: 0 }}
+            transition={{ delay: 0.2, duration: 1.1, ease: EASE.expo }}
             style={{ transformOrigin: "left" }}
             className="block h-px w-12 bg-[var(--color-bone)]/40"
           />
           <motion.span
             initial={{ opacity: 0, y: 14 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 2.7, duration: 0.8, ease: EASE.quart }}
+            animate={r ? { opacity: 1, y: 0 } : { opacity: 0, y: 14 }}
+            transition={{ delay: 0.3, duration: 0.8, ease: EASE.quart }}
             className="font-[var(--font-mono)] text-[11px] uppercase tracking-[0.32em] text-[var(--color-bone)]/55"
           >
             Smartee Kuwait · Est. orthodontic studio
@@ -54,21 +60,21 @@ export function Hero() {
 
         {/* Headline — mask-reveal per line */}
         <h1 className="font-[var(--font-display)] tracking-display text-[clamp(3.6rem,11vw,11.5rem)] font-medium leading-[0.92] text-[var(--color-bone)]">
-          <Line delay={2.8}>Tomorrow’s</Line>
-          <Line delay={2.95}>
+          <Line delay={0.4} reveal={r}>Tomorrow’s</Line>
+          <Line delay={0.55} reveal={r}>
             <span className="italic font-[var(--font-editorial)] tracking-normal text-[var(--color-iris-200)]">smile</span>
             <span className="mx-3 inline-block align-middle text-[var(--color-bone)]/30">/</span>
             <span>shaped</span>
           </Line>
-          <Line delay={3.1}>by the millimeter.</Line>
+          <Line delay={0.7} reveal={r}>by the millimeter.</Line>
         </h1>
 
         {/* Sub copy + CTAs */}
         <div className="mt-12 grid grid-cols-1 items-end gap-10 md:grid-cols-[1fr_auto]">
           <motion.p
             initial={{ opacity: 0, y: 18 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 3.4, duration: 0.9, ease: EASE.quart }}
+            animate={r ? { opacity: 1, y: 0 } : { opacity: 0, y: 18 }}
+            transition={{ delay: 1.0, duration: 0.9, ease: EASE.quart }}
             className="max-w-[42ch] text-balance text-[15px] leading-[1.55] text-[var(--color-bone)]/70 md:text-[16px]"
           >
             A clinical-grade aligner studio in Kuwait City. We scan in three minutes,
@@ -78,8 +84,8 @@ export function Hero() {
 
           <motion.div
             initial={{ opacity: 0, y: 18 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 3.55, duration: 0.9, ease: EASE.quart }}
+            animate={r ? { opacity: 1, y: 0 } : { opacity: 0, y: 18 }}
+            transition={{ delay: 1.15, duration: 0.9, ease: EASE.quart }}
             className="flex items-center gap-3"
           >
             <Magnetic strength={0.28}>
@@ -109,13 +115,13 @@ export function Hero() {
       </motion.div>
 
       {/* Floating data chips */}
-      <DataChips />
+      <DataChips reveal={r} />
 
       {/* Bottom rail */}
       <motion.div
         initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 3.7, duration: 0.9, ease: EASE.quart }}
+        animate={r ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+        transition={{ delay: 1.3, duration: 0.9, ease: EASE.quart }}
         className="absolute inset-x-0 bottom-0 z-[2] flex items-end justify-between gap-6 px-6 pb-6 md:px-10 md:pb-8"
       >
         <div className="flex items-center gap-3 font-[var(--font-mono)] text-[10px] uppercase tracking-[0.28em] text-[var(--color-bone)]/55">
@@ -139,12 +145,12 @@ export function Hero() {
   );
 }
 
-function Line({ children, delay }: { children: React.ReactNode; delay: number }) {
+function Line({ children, delay, reveal }: { children: React.ReactNode; delay: number; reveal: boolean }) {
   return (
     <span className="block overflow-hidden">
       <motion.span
         initial={{ y: "108%" }}
-        animate={{ y: "0%" }}
+        animate={reveal ? { y: "0%" } : { y: "108%" }}
         transition={{ duration: 1.2, delay, ease: EASE.expo }}
         className="block"
       >

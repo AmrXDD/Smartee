@@ -18,7 +18,7 @@ const CHIPS: Chip[] = [
   { x: "82%", y: "76%", label: "Pressure curve", value: "0.12 N", drift: [14, 10] },
 ];
 
-export function DataChips() {
+export function DataChips({ reveal = true }: { reveal?: boolean }) {
   const px = useMotionValue(0);
   const py = useMotionValue(0);
   const spx = useSpring(px, { stiffness: 60, damping: 18, mass: 0.6 });
@@ -38,7 +38,7 @@ export function DataChips() {
   return (
     <div className="pointer-events-none absolute inset-0 z-[3]">
       {CHIPS.map((chip, i) => (
-        <ChipNode key={chip.label} chip={chip} index={i} px={spx} py={spy} />
+        <ChipNode key={chip.label} chip={chip} index={i} px={spx} py={spy} reveal={reveal} />
       ))}
     </div>
   );
@@ -49,11 +49,13 @@ function ChipNode({
   index,
   px,
   py,
+  reveal,
 }: {
   chip: Chip;
   index: number;
   px: ReturnType<typeof useMotionValue<number>>;
   py: ReturnType<typeof useMotionValue<number>>;
+  reveal: boolean;
 }) {
   const tx = useTransform(px, (v) => v * chip.drift[0]);
   const ty = useTransform(py, (v) => v * chip.drift[1]);
@@ -62,8 +64,8 @@ function ChipNode({
     <motion.div
       style={{ left: chip.x, top: chip.y, x: tx, y: ty }}
       initial={{ opacity: 0, y: 16 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 3.2 + index * 0.12, duration: 0.9, ease: [0.19, 1, 0.22, 1] }}
+      animate={reveal ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
+      transition={{ delay: 0.9 + index * 0.12, duration: 0.9, ease: [0.19, 1, 0.22, 1] }}
       className="absolute -translate-x-1/2 -translate-y-1/2"
     >
       <div className="flex items-center gap-2 rounded-full border border-[var(--color-bone)]/15 bg-[var(--color-ink)]/55 px-3 py-1.5 backdrop-blur-md">
