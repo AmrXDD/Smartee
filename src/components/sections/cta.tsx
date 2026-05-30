@@ -14,7 +14,7 @@ export function Cta() {
     <section
       id="consult"
       ref={ref}
-      className="relative isolate overflow-hidden bg-[var(--color-obsidian)] py-40 text-[var(--color-bone)] noise md:py-56"
+      className="relative isolate overflow-hidden bg-[var(--color-obsidian)] py-24 text-[var(--color-bone)] noise sm:py-32 md:py-56"
     >
       {/* Ambient gradient */}
       <div
@@ -58,7 +58,7 @@ export function Cta() {
         />
       </motion.svg>
 
-      <div className="relative mx-auto max-w-[1280px] px-6 text-center md:px-10">
+      <div className="relative mx-auto max-w-[1280px] px-5 text-center sm:px-6 md:px-10">
         <motion.div
           initial={{ opacity: 0, y: 18 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -74,7 +74,7 @@ export function Cta() {
 
         <motion.h2
           style={{ y: titleY }}
-          className="mx-auto mt-10 max-w-[16ch] font-[var(--font-display)] tracking-display text-[clamp(3.4rem,9vw,9rem)] font-medium leading-[0.95]"
+          className="mx-auto mt-8 max-w-[16ch] font-[var(--font-display)] tracking-display text-[clamp(2.4rem,9vw,9rem)] font-medium leading-[1] md:mt-10 md:leading-[0.95]"
         >
           Begin the scan{" "}
           <span className="font-[var(--font-editorial)] italic text-[var(--color-iris-200)]">that begins the smile.</span>
@@ -114,7 +114,7 @@ export function Cta() {
             <a
               href="tel:+96522000000"
               data-cursor="hover"
-              className="link-underline px-3 py-2 text-[13px] text-[var(--color-bone)]/80"
+              className="link-underline inline-flex h-11 items-center px-3 text-[13px] text-[var(--color-bone)]/80"
             >
               +965 2200 0000
             </a>

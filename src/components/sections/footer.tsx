@@ -22,10 +22,10 @@ const COLS = [
 
 export function Footer() {
   return (
-    <footer className="relative overflow-hidden bg-[var(--color-bone)] pt-24 text-[var(--color-ink)]">
-      <div className="mx-auto max-w-[1480px] px-6 md:px-10">
+    <footer className="relative overflow-hidden bg-[var(--color-bone)] pt-16 text-[var(--color-ink)] sm:pt-20 md:pt-24">
+      <div className="mx-auto max-w-[1480px] px-5 sm:px-6 md:px-10">
         {/* Top — address + nav */}
-        <div className="grid grid-cols-2 gap-10 border-t border-[var(--color-stone)]/30 pt-16 md:grid-cols-12">
+        <div className="grid grid-cols-2 gap-x-6 gap-y-10 border-t border-[var(--color-stone)]/30 pt-12 sm:pt-16 md:grid-cols-12">
           <div className="col-span-2 md:col-span-4">
             <div className="font-[var(--font-mono)] text-[10px] uppercase tracking-[0.32em] text-[var(--color-graphite)]">
               Studio
@@ -49,11 +49,11 @@ export function Footer() {
               <div className="font-[var(--font-mono)] text-[10px] uppercase tracking-[0.32em] text-[var(--color-graphite)]">
                 {col.title}
               </div>
-              <ul className="mt-4 flex flex-col gap-2 text-[14px]">
+              <ul className="mt-4 flex flex-col gap-1 text-[14px]">
                 {col.links.map((l) => (
                   <li key={l}>
                     <Magnetic strength={0.18}>
-                      <Link href="#" data-cursor="hover" className="link-underline">
+                      <Link href="#" data-cursor="hover" className="link-underline inline-flex min-h-[36px] items-center">
                         {l}
                       </Link>
                     </Magnetic>
@@ -63,15 +63,15 @@ export function Footer() {
             </div>
           ))}
 
-          <div className="md:col-span-2">
+          <div className="col-span-2 md:col-span-2">
             <div className="font-[var(--font-mono)] text-[10px] uppercase tracking-[0.32em] text-[var(--color-graphite)]">
               Reach
             </div>
-            <ul className="mt-4 flex flex-col gap-2 text-[14px]">
-              <li><a href="mailto:hello@smartee.kw" className="link-underline">hello@smartee.kw</a></li>
-              <li><a href="tel:+96522000000" className="link-underline">+965 2200 0000</a></li>
-              <li><a href="#" className="link-underline">Instagram</a></li>
-              <li><a href="#" className="link-underline">WhatsApp</a></li>
+            <ul className="mt-4 flex flex-col gap-1 text-[14px]">
+              <li><a href="mailto:hello@smartee.kw" className="link-underline inline-flex min-h-[36px] items-center">hello@smartee.kw</a></li>
+              <li><a href="tel:+96522000000" className="link-underline inline-flex min-h-[36px] items-center">+965 2200 0000</a></li>
+              <li><a href="#" className="link-underline inline-flex min-h-[36px] items-center">Instagram</a></li>
+              <li><a href="#" className="link-underline inline-flex min-h-[36px] items-center">WhatsApp</a></li>
             </ul>
           </div>
         </div>
@@ -82,10 +82,10 @@ export function Footer() {
           whileInView={{ y: 0, opacity: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 1.2, ease: EASE.quart }}
-          className="mt-24 select-none"
+          className="mt-16 select-none md:mt-24"
           aria-hidden
         >
-          <div className="font-[var(--font-display)] leading-[0.82] tracking-[-0.05em] text-[clamp(5rem,21vw,22rem)] text-[var(--color-ink)]">
+          <div className="font-[var(--font-display)] leading-[0.82] tracking-[-0.05em] text-[clamp(4rem,21vw,22rem)] text-[var(--color-ink)]">
             Smartee<span className="text-[var(--color-iris-500)]">.</span>
           </div>
         </motion.div>
@@ -97,9 +97,9 @@ export function Footer() {
             © {new Date().getFullYear()} Smartee Kuwait · MoH licensed
           </div>
           <div className="flex items-center gap-6">
-            <Link href="#" className="link-underline">Privacy</Link>
-            <Link href="#" className="link-underline">Terms</Link>
-            <Link href="#" className="link-underline">Accessibility</Link>
+            <Link href="#" className="link-underline inline-flex min-h-[36px] items-center">Privacy</Link>
+            <Link href="#" className="link-underline inline-flex min-h-[36px] items-center">Terms</Link>
+            <Link href="#" className="link-underline inline-flex min-h-[36px] items-center">Accessibility</Link>
           </div>
         </div>
       </div>

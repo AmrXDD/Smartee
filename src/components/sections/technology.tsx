@@ -35,7 +35,7 @@ export function Technology() {
   const rotate = useTransform(scrollYProgress, [0, 1], [-8, 12]);
 
   return (
-    <section id="technology" ref={ref} className="relative bg-[var(--color-ink)] py-32 text-[var(--color-bone)] md:py-44">
+    <section id="technology" ref={ref} className="relative bg-[var(--color-ink)] py-20 text-[var(--color-bone)] sm:py-28 md:py-44">
       {/* Ambient panel */}
       <motion.div
         style={{ rotate }}
@@ -45,8 +45,8 @@ export function Technology() {
         <div className="absolute inset-0 bg-[radial-gradient(40%_60%_at_50%_50%,oklch(36%_0.165_23/0.45),transparent_70%)]" />
       </motion.div>
 
-      <div className="relative mx-auto max-w-[1480px] px-6 md:px-10">
-        <div className="grid grid-cols-1 gap-16 md:grid-cols-12">
+      <div className="relative mx-auto max-w-[1480px] px-5 sm:px-6 md:px-10">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-12 md:gap-16">
           <div className="md:col-span-7">
             <SectionHeader
               index="03"
@@ -68,20 +68,21 @@ export function Technology() {
         {/* Centerpiece: animated tooth-scan visualization */}
         <motion.div
           style={{ scale }}
-          className="relative mx-auto mt-24 aspect-[16/10] w-full max-w-[1100px] overflow-hidden rounded-[28px] border border-[var(--color-bone)]/10 bg-[var(--color-obsidian)] noise"
+          className="relative mx-auto mt-12 aspect-[4/3] w-full max-w-[1100px] overflow-hidden rounded-[20px] border border-[var(--color-bone)]/10 bg-[var(--color-obsidian)] noise sm:aspect-[16/10] sm:rounded-[28px] md:mt-24"
         >
           <ToothScan />
-          <div className="pointer-events-none absolute inset-0 flex items-end justify-between p-8 font-[var(--font-mono)] text-[10px] uppercase tracking-[0.28em] text-[var(--color-bone)]/55">
-            <span>Smartee Simulation Engine · v4.2</span>
-            <span className="flex items-center gap-2">
+          <div className="pointer-events-none absolute inset-0 flex items-end justify-between gap-3 p-4 font-[var(--font-mono)] text-[9px] uppercase tracking-[0.24em] text-[var(--color-bone)]/55 sm:p-6 sm:text-[10px] sm:tracking-[0.28em] md:p-8">
+            <span className="truncate">Simulation Engine <span className="hidden sm:inline">· v4.2</span></span>
+            <span className="flex shrink-0 items-center gap-2">
               <span className="inline-block h-1.5 w-1.5 animate-pulse rounded-full bg-[var(--color-iris-300)]" />
-              Real-time render
+              <span className="hidden sm:inline">Real-time render</span>
+              <span className="sm:hidden">Live</span>
             </span>
           </div>
         </motion.div>
 
         {/* Pillars */}
-        <div className="mt-24 grid grid-cols-1 gap-y-12 md:grid-cols-2 md:gap-x-16 md:gap-y-20">
+        <div className="mt-16 grid grid-cols-1 gap-y-10 md:mt-24 md:grid-cols-2 md:gap-x-16 md:gap-y-20">
           {PILLARS.map((p, i) => (
             <motion.article
               key={p.code}

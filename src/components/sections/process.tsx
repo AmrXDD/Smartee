@@ -44,8 +44,8 @@ export function Process() {
   const progress = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
   return (
-    <section id="process" ref={ref} className="relative bg-[var(--color-bone)] py-32 md:py-44">
-      <div className="mx-auto max-w-[1480px] px-6 md:px-10">
+    <section id="process" ref={ref} className="relative bg-[var(--color-bone)] py-20 sm:py-28 md:py-44">
+      <div className="mx-auto max-w-[1480px] px-5 sm:px-6 md:px-10">
         <SectionHeader
           index="04"
           eyebrow="Process"
@@ -57,7 +57,7 @@ export function Process() {
           }
         />
 
-        <div className="relative mt-20 grid grid-cols-[40px_1fr] gap-8 md:grid-cols-[120px_1fr]">
+        <div className="relative mt-12 grid grid-cols-[20px_1fr] gap-5 sm:grid-cols-[40px_1fr] sm:gap-8 md:mt-20 md:grid-cols-[120px_1fr]">
           {/* Vertical rail */}
           <div className="relative">
             <div className="sticky top-32 h-[60vh]">
@@ -71,7 +71,7 @@ export function Process() {
           </div>
 
           {/* Steps */}
-          <ol className="flex flex-col gap-20 md:gap-32">
+          <ol className="flex flex-col gap-14 sm:gap-20 md:gap-32">
             {STEPS.map((s, i) => (
               <motion.li
                 key={s.n}
@@ -79,17 +79,18 @@ export function Process() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-20%" }}
                 transition={{ duration: 1, delay: i * 0.03, ease: EASE.quart }}
-                className="grid grid-cols-1 gap-8 md:grid-cols-[180px_1fr]"
+                className="grid grid-cols-1 gap-5 md:grid-cols-[180px_1fr] md:gap-8"
               >
-                <div className="flex flex-col gap-2 font-[var(--font-mono)] text-[10px] uppercase tracking-[0.28em] text-[var(--color-graphite)]">
+                <div className="flex flex-row items-center gap-3 font-[var(--font-mono)] text-[10px] uppercase tracking-[0.28em] text-[var(--color-graphite)] md:flex-col md:items-start md:gap-2">
                   <span className="text-[var(--color-iris-600)]">{s.n}</span>
+                  <span className="text-[var(--color-stone)]">·</span>
                   <span>{s.day}</span>
                 </div>
                 <div>
-                  <h3 className="font-[var(--font-display)] text-[clamp(2rem,3.2vw,3.2rem)] font-medium tracking-display text-[var(--color-ink)]">
+                  <h3 className="font-[var(--font-display)] text-[clamp(1.65rem,5vw,3.2rem)] font-medium tracking-display leading-[1.05] text-[var(--color-ink)]">
                     {s.title}
                   </h3>
-                  <p className="mt-4 max-w-[58ch] text-[15px] leading-[1.65] text-[var(--color-graphite)] md:text-[16px]">
+                  <p className="mt-3 max-w-[58ch] text-[14px] leading-[1.6] text-[var(--color-graphite)] sm:text-[15px] md:mt-4 md:text-[16px] md:leading-[1.65]">
                     {s.body}
                   </p>
                 </div>

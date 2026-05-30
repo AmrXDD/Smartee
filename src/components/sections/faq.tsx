@@ -32,9 +32,9 @@ export function Faq() {
   const [open, setOpen] = useState<number | null>(0);
 
   return (
-    <section id="faq" className="relative bg-[var(--color-bone)] py-32 md:py-44">
-      <div className="mx-auto max-w-[1480px] px-6 md:px-10">
-        <div className="grid grid-cols-1 gap-16 md:grid-cols-12">
+    <section id="faq" className="relative bg-[var(--color-bone)] py-20 sm:py-28 md:py-44">
+      <div className="mx-auto max-w-[1480px] px-5 sm:px-6 md:px-10">
+        <div className="grid grid-cols-1 gap-10 md:grid-cols-12 md:gap-16">
           <div className="md:col-span-5">
             <SectionHeader
               index="06"
@@ -61,13 +61,13 @@ export function Faq() {
                     type="button"
                     onClick={() => setOpen(isOpen ? null : i)}
                     data-cursor="hover"
-                    className="group flex w-full items-center justify-between gap-6 py-6 text-left"
+                    className="group flex w-full items-center justify-between gap-4 py-5 text-left md:gap-6 md:py-6"
                   >
-                    <span className="flex items-baseline gap-5">
+                    <span className="flex items-baseline gap-3 md:gap-5">
                       <span className="font-[var(--font-mono)] text-[10px] uppercase tracking-[0.28em] text-[var(--color-iris-600)]">
                         {String(i + 1).padStart(2, "0")}
                       </span>
-                      <span className="font-[var(--font-display)] text-[clamp(1.2rem,1.8vw,1.5rem)] font-medium tracking-[-0.015em] text-[var(--color-ink)]">
+                      <span className="font-[var(--font-display)] text-[clamp(1.05rem,1.8vw,1.5rem)] font-medium leading-[1.3] tracking-[-0.015em] text-[var(--color-ink)]">
                         {item.q}
                       </span>
                     </span>
@@ -89,7 +89,7 @@ export function Faq() {
                         transition={{ duration: 0.55, ease: EASE.quart }}
                         className="overflow-hidden"
                       >
-                        <p className="pb-7 pl-[58px] pr-10 text-[15px] leading-[1.65] text-[var(--color-graphite)] md:text-[16px]">
+                        <p className="pb-6 pl-[34px] pr-2 text-[14px] leading-[1.6] text-[var(--color-graphite)] md:pb-7 md:pl-[58px] md:pr-10 md:text-[16px] md:leading-[1.65]">
                           {item.a}
                         </p>
                       </motion.div>

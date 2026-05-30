@@ -130,7 +130,7 @@ function CenterStage({
           aria-valuemax={100}
           aria-valuenow={percent}
           aria-label="Scanning progress"
-          className="relative flex items-center font-[var(--font-display)] text-[clamp(7rem,18vw,16rem)] font-medium leading-[0.85] tracking-[-0.06em] tabular-nums text-[var(--color-bone)]"
+          className="relative flex items-center font-[var(--font-display)] text-[clamp(5.5rem,22vw,16rem)] font-medium leading-[0.85] tracking-[-0.06em] tabular-nums text-[var(--color-bone)]"
         >
           <Digit value={Math.floor(percent / 100)} />
           <Digit value={Math.floor((percent % 100) / 10)} />
@@ -264,8 +264,8 @@ function BottomBar({
       transition={{ duration: 0.7, delay: 0.05, ease: EASE.quart }}
       className="flex flex-col gap-4"
     >
-      {/* Segmented progress ticks */}
-      <div className="flex items-end gap-[2px] md:gap-[3px]">
+      {/* Segmented progress ticks — sized to fit narrow viewports */}
+      <div className="flex items-end gap-px sm:gap-[2px] md:gap-[3px]">
         {Array.from({ length: SEGMENTS }).map((_, i) => {
           const active = i < filled;
           const isLeading = i === filled - 1;
@@ -276,11 +276,11 @@ function BottomBar({
               data-leading={isLeading}
               initial={{ height: 6, opacity: 0.18 }}
               animate={{
-                height: active ? (isLeading ? 24 : 12) : 6,
+                height: active ? (isLeading ? 22 : 10) : 5,
                 opacity: active ? 1 : 0.18,
               }}
               transition={{ duration: 0.25, ease: "easeOut" }}
-              className={`block w-[6px] md:w-[8px] ${isLeading ? "bg-[var(--color-iris-200)]" : "bg-[var(--color-bone)]"}`}
+              className={`block w-[3px] sm:w-[5px] md:w-[8px] ${isLeading ? "bg-[var(--color-iris-200)]" : "bg-[var(--color-bone)]"}`}
             />
           );
         })}
@@ -288,7 +288,7 @@ function BottomBar({
 
       <div className="flex flex-wrap items-end justify-between gap-3">
         {/* Cycling system message */}
-        <div className="relative h-5 min-w-[200px] overflow-hidden">
+        <div className="relative h-5 min-w-[180px] flex-1 overflow-hidden sm:min-w-[200px]">
           <AnimatePresence mode="wait">
             <motion.span
               key={phase === "complete" || phase === "revealing" || phase === "done" ? "done" : msgIdx}

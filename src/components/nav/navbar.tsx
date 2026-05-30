@@ -35,9 +35,14 @@ export function Navbar() {
         transition={{ delay: 0.15, duration: 0.9, ease: EASE.quart }}
         className="fixed inset-x-0 top-0 z-[150] mix-blend-difference"
       >
-        <div className="mx-auto flex max-w-[1480px] items-center justify-between px-6 py-5 md:px-10 md:py-6">
+        <div className="mx-auto flex max-w-[1480px] items-center justify-between px-5 py-4 md:px-10 md:py-6">
           {/* Wordmark */}
-          <Link href="#" className="group inline-flex items-center gap-3" data-cursor="hover">
+          <Link
+            href="#"
+            className="group inline-flex h-11 items-center gap-3 -my-2 py-2"
+            data-cursor="hover"
+            aria-label="Smartee Kuwait — back to top"
+          >
             <motion.span
               aria-hidden
               className="block h-6 w-6"

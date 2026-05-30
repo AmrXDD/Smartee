@@ -17,12 +17,12 @@ export function BrandIntro() {
   const lift = useTransform(scrollYProgress, [0, 1], [80, -80]);
 
   return (
-    <section ref={ref} className="relative bg-[var(--color-bone)] py-32 md:py-44">
-      <div className="mx-auto max-w-[1480px] px-6 md:px-10">
-        <div className="grid grid-cols-1 gap-16 md:grid-cols-12">
+    <section ref={ref} className="relative bg-[var(--color-bone)] py-20 sm:py-28 md:py-44">
+      <div className="mx-auto max-w-[1480px] px-5 sm:px-6 md:px-10">
+        <div className="grid grid-cols-1 gap-8 md:grid-cols-12 md:gap-16">
           {/* Left rail — eyebrow + index */}
           <div className="md:col-span-3">
-            <div className="sticky top-32 flex items-center gap-3 font-[var(--font-mono)] text-[10px] uppercase tracking-[0.32em] text-[var(--color-graphite)]">
+            <div className="flex items-center gap-3 font-[var(--font-mono)] text-[10px] uppercase tracking-[0.32em] text-[var(--color-graphite)] md:sticky md:top-32">
               <span className="tabular-nums text-[var(--color-iris-600)]">01</span>
               <span className="block h-px w-10 bg-[var(--color-stone)]/40" />
               <span>The studio</span>
@@ -36,7 +36,7 @@ export function BrandIntro() {
               whileInView="show"
               viewport={{ once: true, margin: "-20%" }}
               transition={{ staggerChildren: 0.04 }}
-              className="font-[var(--font-display)] text-[clamp(1.9rem,3.2vw,3.4rem)] font-light leading-[1.18] tracking-[-0.022em] text-[var(--color-ink)]"
+              className="font-[var(--font-display)] text-[clamp(1.35rem,3.2vw,3.4rem)] font-light leading-[1.25] tracking-[-0.022em] text-[var(--color-ink)] md:leading-[1.18]"
             >
               {[
                 "Smartee is a",
@@ -62,7 +62,7 @@ export function BrandIntro() {
 
             <motion.div
               style={{ y: lift }}
-              className="mt-24 grid grid-cols-2 gap-x-8 gap-y-12 md:grid-cols-4"
+              className="mt-16 grid grid-cols-2 gap-x-5 gap-y-10 sm:gap-x-8 md:mt-24 md:gap-y-12 md:grid-cols-4"
             >
               {STATS.map((s, i) => (
                 <motion.div
@@ -73,7 +73,7 @@ export function BrandIntro() {
                   transition={{ duration: 0.9, delay: i * 0.08, ease: EASE.quart }}
                   className="border-t border-[var(--color-stone)]/30 pt-4"
                 >
-                  <div className="font-[var(--font-display)] text-[clamp(2.2rem,4vw,3.6rem)] font-medium tracking-[-0.04em] text-[var(--color-ink)] tabular-nums">
+                  <div className="font-[var(--font-display)] text-[clamp(1.8rem,4vw,3.6rem)] font-medium tracking-[-0.04em] text-[var(--color-ink)] tabular-nums">
                     {s.value}
                   </div>
                   <div className="mt-2 font-[var(--font-mono)] text-[10px] uppercase tracking-[0.28em] text-[var(--color-graphite)]">

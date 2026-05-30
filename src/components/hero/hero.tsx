@@ -37,7 +37,7 @@ export function Hero() {
       {/* Headline column */}
       <motion.div
         style={{ y: titleY, opacity: titleOpacity }}
-        className="relative z-[2] mx-auto flex min-h-[100svh] max-w-[1480px] flex-col justify-center px-6 pt-32 md:px-10 md:pt-40"
+        className="relative z-[2] mx-auto flex min-h-[100svh] max-w-[1480px] flex-col justify-center px-5 pt-28 md:px-10 md:pt-40"
       >
         {/* Eyebrow */}
         <div className="mb-8 flex items-center gap-3 overflow-hidden">
@@ -58,12 +58,13 @@ export function Hero() {
           </motion.span>
         </div>
 
-        {/* Headline — mask-reveal per line */}
-        <h1 className="font-[var(--font-display)] tracking-display text-[clamp(3.6rem,11vw,11.5rem)] font-medium leading-[0.92] text-[var(--color-bone)]">
+        {/* Headline — mask-reveal per line. Smaller min on mobile to keep
+            line 2 ("smile/shaped") and line 3 ("by the millimeter.") single-line. */}
+        <h1 className="font-[var(--font-display)] tracking-display text-[clamp(2.6rem,11vw,11.5rem)] font-medium leading-[0.95] text-[var(--color-bone)] md:leading-[0.92]">
           <Line delay={0.4} reveal={r}>Tomorrow’s</Line>
           <Line delay={0.55} reveal={r}>
             <span className="italic font-[var(--font-editorial)] tracking-normal text-[var(--color-iris-200)]">smile</span>
-            <span className="mx-3 inline-block align-middle text-[var(--color-bone)]/30">/</span>
+            <span className="mx-2 inline-block align-middle text-[var(--color-bone)]/30 md:mx-3">/</span>
             <span>shaped</span>
           </Line>
           <Line delay={0.7} reveal={r}>by the millimeter.</Line>
@@ -86,7 +87,7 @@ export function Hero() {
             initial={{ opacity: 0, y: 18 }}
             animate={r ? { opacity: 1, y: 0 } : { opacity: 0, y: 18 }}
             transition={{ delay: 1.15, duration: 0.9, ease: EASE.quart }}
-            className="flex items-center gap-3"
+            className="flex flex-wrap items-center gap-x-3 gap-y-2"
           >
             <Magnetic strength={0.28}>
               <a
@@ -105,7 +106,7 @@ export function Hero() {
               <a
                 href="#technology"
                 data-cursor="hover"
-                className="link-underline px-3 py-2 text-[13px] text-[var(--color-bone)]/80"
+                className="link-underline inline-flex h-11 items-center px-3 text-[13px] text-[var(--color-bone)]/80"
               >
                 See the technology
               </a>
@@ -122,16 +123,18 @@ export function Hero() {
         initial={{ opacity: 0, y: 20 }}
         animate={r ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
         transition={{ delay: 1.3, duration: 0.9, ease: EASE.quart }}
-        className="absolute inset-x-0 bottom-0 z-[2] flex items-end justify-between gap-6 px-6 pb-6 md:px-10 md:pb-8"
+        className="absolute inset-x-0 bottom-0 z-[2] flex items-end justify-between gap-4 px-5 pb-5 md:px-10 md:pb-8"
       >
-        <div className="flex items-center gap-3 font-[var(--font-mono)] text-[10px] uppercase tracking-[0.28em] text-[var(--color-bone)]/55">
+        <div className="flex items-center gap-2 font-[var(--font-mono)] text-[9px] uppercase tracking-[0.24em] text-[var(--color-bone)]/55 md:gap-3 md:text-[10px] md:tracking-[0.28em]">
           <span className="inline-block h-1.5 w-1.5 animate-pulse rounded-full bg-[var(--color-iris-300)]" />
-          Live · Kuwait City studio
+          <span>
+            Live <span className="hidden sm:inline">· Kuwait City studio</span>
+          </span>
         </div>
         <motion.div
           animate={{ y: [0, 6, 0] }}
           transition={{ duration: 2.4, repeat: Infinity, ease: "easeInOut" }}
-          className="flex flex-col items-center gap-2 font-[var(--font-mono)] text-[10px] uppercase tracking-[0.28em] text-[var(--color-bone)]/55"
+          className="flex flex-col items-center gap-2 font-[var(--font-mono)] text-[9px] uppercase tracking-[0.24em] text-[var(--color-bone)]/55 md:text-[10px] md:tracking-[0.28em]"
         >
           Scroll
           <span className="block h-6 w-px bg-[var(--color-bone)]/30" />

@@ -27,8 +27,8 @@ const STORIES = [
 
 export function Testimonials() {
   return (
-    <section id="stories" className="relative overflow-hidden bg-[var(--color-mist)] py-32 md:py-44">
-      <div className="mx-auto max-w-[1480px] px-6 md:px-10">
+    <section id="stories" className="relative overflow-hidden bg-[var(--color-mist)] py-20 sm:py-28 md:py-44">
+      <div className="mx-auto max-w-[1480px] px-5 sm:px-6 md:px-10">
         <div className="grid grid-cols-1 gap-10 md:grid-cols-12">
           <div className="md:col-span-7">
             <SectionHeader
@@ -45,7 +45,7 @@ export function Testimonials() {
           </div>
         </div>
 
-        <ul className="mt-20 grid grid-cols-1 gap-6 md:grid-cols-3">
+        <ul className="mt-12 grid grid-cols-1 gap-4 md:mt-20 md:grid-cols-3 md:gap-6">
           {STORIES.map((s, i) => (
             <motion.li
               key={s.name}
@@ -53,9 +53,9 @@ export function Testimonials() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-10%" }}
               transition={{ duration: 1, delay: i * 0.1, ease: EASE.quart }}
-              className="flex flex-col justify-between rounded-[24px] bg-[var(--color-bone)] p-8 md:p-10"
+              className="flex flex-col justify-between rounded-[20px] bg-[var(--color-bone)] p-6 sm:p-8 md:rounded-[24px] md:p-10"
             >
-              <p className="font-[var(--font-editorial)] text-[clamp(1.5rem,2vw,1.95rem)] leading-[1.3] text-[var(--color-ink)]">
+              <p className="font-[var(--font-editorial)] text-[clamp(1.25rem,2vw,1.95rem)] leading-[1.35] text-[var(--color-ink)] sm:leading-[1.3]">
                 <span className="text-[var(--color-iris-600)]">“</span>
                 {s.quote}
                 <span className="text-[var(--color-iris-600)]">”</span>
@@ -72,7 +72,7 @@ export function Testimonials() {
         </ul>
 
         {/* Marquee */}
-        <div className="mt-24 overflow-hidden border-y border-[var(--color-stone)]/30 py-6">
+        <div className="mt-16 overflow-hidden border-y border-[var(--color-stone)]/30 py-4 sm:py-6 md:mt-24">
           <motion.div
             animate={{ x: ["0%", "-50%"] }}
             transition={{ duration: 38, repeat: Infinity, ease: "linear" }}

@@ -36,7 +36,8 @@ export function DataChips({ reveal = true }: { reveal?: boolean }) {
   }, [px, py]);
 
   return (
-    <div className="pointer-events-none absolute inset-0 z-[3]">
+    // Decorative chips are hidden under md to keep the hero clean on mobile.
+    <div className="pointer-events-none absolute inset-0 z-[3] hidden md:block">
       {CHIPS.map((chip, i) => (
         <ChipNode key={chip.label} chip={chip} index={i} px={spx} py={spy} reveal={reveal} />
       ))}
